@@ -1,0 +1,25 @@
+{
+  "name": "configgles",
+  "version": "0.0.1",
+  "description": "Simple config loader with inheritance support",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/djvirgen/configgles.git"
+  },
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script --reporter spec"
+  },
+  "dependencies": {
+    "js-yaml": "*"
+  },
+  "devDependencies": {
+    "mocha": "~1.6.0",
+    "should": "*"
+  },
+  "keywords": [
+    "config, yaml, json, coffee"
+  ],
+  "author": "Hector Virgen (http://www.virgentech.com) <hector@virgentech.com>",
+  "license": "BSD"
+}
