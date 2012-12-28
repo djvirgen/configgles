@@ -74,8 +74,8 @@ Here's how we'd load it:
     assert(config.facebook.debug == true);
     assert(config.facebook.return_to == 'http://staging.mysite.com/fb');
 
-    // In staging:
+    // In development:
     assert(config.facebook.api_key == 123); // inherited from production!
     assert(config.facebook.secret == 'abc'); // also inherited from production!!
     assert(config.facebook.debug == true); // inherited from staging!
-    assert(config.facebook.return_to == 'http://staging.mysite.com/fb');
+    assert(config.facebook.return_to == 'http://localhost:3000/fb');
