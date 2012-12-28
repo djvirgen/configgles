@@ -60,7 +60,7 @@ Here's how we'd load it:
     var Config = require('configgles');
 
     // Load config file
-    var config = new Config(__dirname + '/config/base.yaml', APP.env);
+    var config = new Config(__dirname + '/config/base.yaml', process.env.RACK_ENV);
 
     // In production:
     assert(config.facebook.api_key == 123);
