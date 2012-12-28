@@ -44,13 +44,13 @@ can use inheritance to DRY up your config:
         return_to: 'http://www.mysite.com/fb'
 
     staging:
-      _inherits: production
+      _extends: production
       facebook:
         debug: true
         return_to: 'http://staging.mysite.com/fb'
 
     development:
-      _inherits: staging
+      _extends: staging
       facebook:
         return_to: 'http://localhost:3000/fb'
 
