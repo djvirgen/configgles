@@ -1,8 +1,8 @@
 {
   "name": "configgles",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple config loader with inheritance support",
-  "main": "lib/index.coffee",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/djvirgen/configgles.git"

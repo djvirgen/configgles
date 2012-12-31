@@ -16,7 +16,7 @@ class Config
     while section && data[section]?
       sections.unshift section
       section = data[section]._extends
-    
+
     for section in sections
       do (section) =>
         deepMerge this, data[section]
