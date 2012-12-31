@@ -86,6 +86,6 @@ Development
 
 Want to contribue to Configgles?
 
-- Run tests
+*Run tests*
 
     npm run-script test
