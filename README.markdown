@@ -2,7 +2,8 @@ Configgles
 ==========
 
 A simple config loader with support for inheritance. Supports YAML, Coffee, and
-plain old JavaScript config files.
+plain old JavaScript config files. Handles deep merges automatically allowing
+you to override just what you need while keeping the rest.
 
 Installation
 ------------
@@ -79,3 +80,12 @@ Here's how we'd load it:
     assert(config.facebook.secret == 'abc'); // also inherited from production!!
     assert(config.facebook.debug == true); // inherited from staging!
     assert(config.facebook.return_to == 'http://localhost:3000/fb');
+
+Development
+-----------
+
+Want to contribue to Configgles?
+
+- Run tests
+
+    npm run-script test
