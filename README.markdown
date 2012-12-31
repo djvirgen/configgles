@@ -22,10 +22,10 @@ object. Here's a simple YAML config stored in `config/base.yaml`:
 Here's how we'd load it:
 
     // Load library
-    var Config = require('configgles');
+    var Configgles = require('configgles');
 
     // Load config file
-    var config = new Config(__dirname + '/config/base.yaml');
+    var config = new Configgles(__dirname + '/config/base.yaml');
 
     // Access config values!!
     assert(config.foo == 'bar');
@@ -58,10 +58,10 @@ can use inheritance to DRY up your config:
 Here's how we'd load it:
     
     // Load library
-    var Config = require('configgles');
+    var Configgles = require('configgles');
 
     // Load config file
-    var config = new Config(__dirname + '/config/base.yaml', process.env.RACK_ENV);
+    var config = new Configgles(__dirname + '/config/base.yaml', process.env.RACK_ENV);
 
     // In production:
     assert(config.facebook.api_key == 123);
