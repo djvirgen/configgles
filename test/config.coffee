@@ -120,3 +120,10 @@ describe 'Config', ->
             do (key, value) ->
               it "should have nested property #{key} with value of #{value}", ->
                 this.config.subsection.subsection2.should.have.property(key, value)
+
+  describe 'arrays', ->
+    it 'should replace array value by default', ->
+      config = new Config("#{__dirname}/configs/arrays", 'bar')
+      config.list.should.have.lengthOf 2
+      config.list[0].should.eql "four"
+      config.list[1].should.eql "five"

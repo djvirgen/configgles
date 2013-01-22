@@ -1,0 +1,16 @@
+foo:
+  list:
+    - "one"
+    - "two"
+    - "three"
+
+bar:
+  _inherits: foo
+  list:
+    - "four"
+    - "five"
+
+derp:
+  _inherits: bar
+  list:
+    - "six"
