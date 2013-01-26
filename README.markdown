@@ -81,6 +81,47 @@ Here's how we'd load it:
     assert(config.facebook.debug == true); // inherited from staging!
     assert(config.facebook.return_to == 'http://localhost:3000/fb');
 
+Arrays!!
+--------
+
+There are two ways to handle arrays when it comes to inheritance: replace the
+parent array (default behavior), or merge with the parent. Here's how to
+configure them in a yaml config file:
+
+    production:
+      contacts:
+        - "foo@example.com"
+        - "bar@example.com"
+      navigation:
+        - "home"
+        - "contact"
+
+    staging:
+      _extends: production
+      contacts: # this entire array will replace the array in production
+        - "staging-foo@example.com"
+      navigation:
+        _merge: # by using _merge, you can merge this array with the parent
+          - "new-page"
+
+Using this yaml file, the resulting configs would be:
+
+    var config = new Configgles('config.yaml', 'production');
+    assert(config.contacts.length == 2); // true!
+    assert(config.contacts[0] == 'foo@example.com'); // true!
+    assert(config.contacts[1] == 'bar@example.com'); // true!
+    assert(config.navigation.length == 2); // true!
+    assert(config.navigation[0] == 'home'); // true!
+    assert(config.navigation[1] == 'contact'); // true!
+
+    var config2 = new Configgles('config.yaml', 'staging');
+    assert(config.contacts.length == 1); // only 1 because the array was replaced
+    assert(config.contacts[0] == 'staging-foo@example.com'); // true!
+    assert(config.navigation.length == 3); // array is merged with parent!
+    assert(config.navigation[0] == 'home'); // still true!
+    assert(config.navigation[1] == 'contact'); // also still true!
+    assert(config.navigation[2] == 'new-page'); // true!!
+
 Development
 -----------
 
