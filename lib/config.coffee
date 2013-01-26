@@ -1,8 +1,9 @@
-require 'js-yaml'
+require 'require-yaml'
 
 class Config
   constructor: (@_path, @_section) ->
     data = require @_path
+    
     if @_section?
       this.loadSection data
     else
@@ -11,6 +12,9 @@ class Config
   loadSection: (data) ->
     section = @_section
     sections = []
+    
+    # deep clone data to prevent reference errors
+    data = JSON.parse(JSON.stringify(data))
 
     # Gather all sections including ancestors in reverse order (eldest first)
     while section && data[section]?
@@ -27,7 +31,14 @@ class Config
 deepMerge = (obj1, obj2) ->
   for key, value of obj2
     do (key, value) ->
-      if obj1[key]? && typeof value == 'object'
+      if value._merge && Array.isArray(value._merge) && Array.isArray(obj1[key])
+        # Merge arrays
+        obj1[key] = obj1[key].concat value._merge
+      else if Array.isArray(obj1[key]) && Array.isArray(value)
+        # Replace array
+        obj1[key] = value
+      else if obj1[key]? && typeof value == 'object'
+        # deep merge objects
         deepMerge obj1[key], value
       else
         obj1[key] = value

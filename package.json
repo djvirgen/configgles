@@ -8,11 +8,11 @@
     "url": "https://github.com/djvirgen/configgles.git"
   },
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script --reporter spec"
+    "test": "mocha"
   },
   "dependencies": {
     "coffee-script": "*",
-    "js-yaml": "*"
+    "require-yaml": "*"
   },
   "devDependencies": {
     "mocha": "~1.6.0",

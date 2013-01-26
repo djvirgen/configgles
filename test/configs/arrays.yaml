@@ -3,14 +3,38 @@ foo:
     - "one"
     - "two"
     - "three"
+  nested:
+    deeper:
+      - "a"
+      - "b"
+      - "c"
+  merged:
+    - "i"
+    - "am"
+    - "merged"
 
 bar:
-  _inherits: foo
+  _extends: "foo"
   list:
     - "four"
     - "five"
+  nested:
+    deeper:
+      - "d"
+      - "e"
+  merged:
+    _merge:
+      - "with"
+      - "bar"
 
 derp:
-  _inherits: bar
+  _extends: bar
   list:
     - "six"
+  nested:
+    deeper:
+      - "f"
+  merged:
+    _merge:
+      - "and"
+      - "derp"

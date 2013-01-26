@@ -122,8 +122,58 @@ describe 'Config', ->
                 this.config.subsection.subsection2.should.have.property(key, value)
 
   describe 'arrays', ->
-    it 'should replace array value by default', ->
+    it 'supports arrays', ->
+      config = new Config("#{__dirname}/configs/arrays", 'foo')
+      config.list.should.have.lengthOf 3
+      config.list[0].should.eql "one"
+      config.list[1].should.eql "two"
+      config.list[2].should.eql "three"
+
+    it 'replaces array value by default', ->
       config = new Config("#{__dirname}/configs/arrays", 'bar')
       config.list.should.have.lengthOf 2
       config.list[0].should.eql "four"
       config.list[1].should.eql "five"
+
+    it 'replaces array value by default 2', ->
+      config = new Config("#{__dirname}/configs/arrays", 'derp')
+      config.list.should.have.lengthOf 1
+      config.list[0].should.eql "six"
+
+    it 'supports deeply nested arrays', ->
+      config = new Config("#{__dirname}/configs/arrays", 'foo')
+      config.nested.deeper.should.have.lengthOf 3
+      config.nested.deeper[0].should.eql "a"
+      config.nested.deeper[1].should.eql "b"
+      config.nested.deeper[2].should.eql "c"
+
+    it 'replaces deeply nested array value by default', ->
+      config = new Config("#{__dirname}/configs/arrays", 'bar')
+      config.nested.deeper.should.have.lengthOf 2
+      config.nested.deeper[0].should.eql "d"
+      config.nested.deeper[1].should.eql "e"
+
+    it 'replaces deeply nested array value by default 2', ->
+      config = new Config("#{__dirname}/configs/arrays", 'derp')
+      config.nested.deeper.should.have.lengthOf 1
+      config.nested.deeper[0].should.eql "f"
+
+    it 'merges with parent if _merge is set', ->
+      config = new Config("#{__dirname}/configs/arrays", 'bar')
+      config.merged.should.have.lengthOf 5
+      config.merged[0].should.eql "i"
+      config.merged[1].should.eql "am"
+      config.merged[2].should.eql "merged"
+      config.merged[3].should.eql "with"
+      config.merged[4].should.eql "bar"
+
+    it 'merges with all parents if _merge is set', ->
+      config = new Config("#{__dirname}/configs/arrays", 'derp')
+      config.merged.should.have.lengthOf 7
+      config.merged[0].should.eql "i"
+      config.merged[1].should.eql "am"
+      config.merged[2].should.eql "merged"
+      config.merged[3].should.eql "with"
+      config.merged[4].should.eql "bar"
+      config.merged[5].should.eql "and"
+      config.merged[6].should.eql "derp"
