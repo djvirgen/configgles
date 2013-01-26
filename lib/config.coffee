@@ -2,10 +2,8 @@ require 'require-yaml'
 
 class Config
   constructor: (@_path, @_section) ->
-    data = require @_path
-    
     # deep clone data to prevent reference errors
-    data = JSON.parse(JSON.stringify(data))
+    data = clone require @_path
 
     if @_section?
       this.loadSection data
@@ -42,5 +40,16 @@ deepMerge = (obj1, obj2) ->
         deepMerge obj1[key], value
       else
         obj1[key] = value
+
+clone = (obj) ->
+  return obj if obj == null || typeof obj != 'object'
+
+  temp = obj.constructor() # changed
+
+  for key, value of obj
+    do (key, value) ->
+      temp[key] = clone obj[key]
+
+  temp
 
 module.exports = Config
