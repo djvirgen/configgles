@@ -4,6 +4,9 @@ class Config
   constructor: (@_path, @_section) ->
     data = require @_path
     
+    # deep clone data to prevent reference errors
+    data = JSON.parse(JSON.stringify(data))
+
     if @_section?
       this.loadSection data
     else
@@ -13,9 +16,6 @@ class Config
     section = @_section
     sections = []
     
-    # deep clone data to prevent reference errors
-    data = JSON.parse(JSON.stringify(data))
-
     # Gather all sections including ancestors in reverse order (eldest first)
     while section && data[section]?
       sections.unshift section
