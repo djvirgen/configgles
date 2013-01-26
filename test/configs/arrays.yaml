@@ -28,7 +28,7 @@ bar:
       - "bar"
 
 derp:
-  _extends: bar
+  _extends: "bar"
   list:
     - "six"
   nested:
