@@ -1,6 +1,6 @@
 {
   "name": "configgles",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Simple config loader with inheritance support",
   "main": "lib/index.js",
   "repository": {
