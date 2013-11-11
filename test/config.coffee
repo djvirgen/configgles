@@ -180,3 +180,14 @@ describe 'Config', ->
             config.merged[4].should.eql "bar"
             config.merged[5].should.eql "and"
             config.merged[6].should.eql "derp"
+
+  describe 'env vars', ->
+    for type in ['yaml', 'coffee', 'js']
+      do (type) ->
+        describe "with #{type} config file", ->
+          beforeEach ->
+            process.env['first.second.third'] = 'overridden-by-env'
+
+          it 'overrides values in config file', ->
+            config = new Config("#{__dirname}/configs/nested.#{type}")
+            config.first.second.third.should.equal 'overridden-by-env'

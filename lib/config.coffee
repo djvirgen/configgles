@@ -25,6 +25,17 @@ class Config
 
   loadAll: (data) ->
     this[key] = value for key, value of data
+    @loadEnvVars()
+
+  loadEnvVars: ->
+    overrideWithEnvVars = (prefix, data) ->
+      for key, value of data
+        do (data) ->
+          deepKey = if prefix.length then "#{prefix}.#{key}" else key
+          return overrideWithEnvVars deepKey, value if typeof value == 'object'
+          data[key] = process.env[deepKey] if process.env[deepKey]?
+
+    overrideWithEnvVars '', @
 
 deepMerge = (obj1, obj2) ->
   for key, value of obj2
