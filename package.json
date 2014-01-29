@@ -11,7 +11,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "coffee-script": "*",
+    "coffee-script": "1.6.7",
     "require-yaml": "*"
   },
   "devDependencies": {
